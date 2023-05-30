@@ -7,6 +7,6 @@ publish = ".next"
 
 [[redirects]]
 from = "/*"
-to = "/index.html"
+to = "/https://rado-weather-dashboard.netlify.app/"
 status = 200
 force=true
