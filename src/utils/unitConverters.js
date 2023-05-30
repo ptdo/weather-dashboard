@@ -1,7 +1,3 @@
-export function toFarenheit(c) {
-  return (c * 9) / 5 + 32
-}
-
 export function toLocalDateTime (unix, withDate) {
   if (withDate) {
     return  new Date(unix * 1000).toLocaleString("en-us", {  

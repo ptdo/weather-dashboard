@@ -1,7 +1,6 @@
 import { LocationMarkerIcon } from '@heroicons/react/solid'
 
 import Image from "next/image";
-import { toFarenheit } from '@/utils/unitConverters';
 
 export default function SummaryCard(props) {
   return (
@@ -22,15 +21,11 @@ export default function SummaryCard(props) {
         />
       </div>
       <h1 className="text-5xl mt-8 font-bold">
-        {Math.round(props.unit === "metric" ? props.main.temp 
-          : toFarenheit(props.main.temp))}
+        {Math.round(props.main.temp)}
         &deg;{props.unit === "metric" ? "C" : "F"}
       </h1>
       <p className="text-xl mb-4 mt-2 font-semibold">
-        Feels like{" "}
-        {Math.round(props.unit === "metric" 
-          ? props.main.feels_like 
-          : toFarenheit(props.main.feels_like))}
+        Feels like {Math.round(props.main.feels_like)}
         &deg;{props.unit === "metric" ? "C" : "F"}
       </p>
     </div>

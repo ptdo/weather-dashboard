@@ -1,4 +1,4 @@
-import { toFarenheit, getDateName } from "@/utils/unitConverters"
+import { getDateName } from "@/utils/unitConverters"
 import Image from "next/image"
 
 export default function WeeklyCard({ data, unit }) {
@@ -15,9 +15,7 @@ export default function WeeklyCard({ data, unit }) {
         />
       </div>
       <p className="text-lg mt-3 font-bold">
-        {Math.round(unit === "metric" ? data.temp.day 
-          : toFarenheit(data.temp.day))}
-        &deg;{unit === "metric" ? "C" : "F"}
+        {Math.round(data.temp.day)} &deg;{unit === "metric" ? "C" : "F"}
       </p>
     </div>
   )

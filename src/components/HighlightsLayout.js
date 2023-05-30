@@ -1,9 +1,7 @@
 import HighlightsCard from "./HighlightsCard";
 import { toLocalDateTime, toDirection } from "@/utils/unitConverters";
 
-
 export default function HighlightsLayout({ data, unit }) {
-
   return (
     <>
       {data && 

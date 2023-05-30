@@ -11,7 +11,7 @@ export default function SearchBar(props) {
         <input
           type="text"
           className=" focus:outline-orange-300 text-lg font-semibold rounded-md p-1 text-gray-800 shadow-md bg-sand-50"
-          placeholder="Enter Location"
+          placeholder="Enter Location..."
           onKeyDown={handleEnter}
         />
       </div>
