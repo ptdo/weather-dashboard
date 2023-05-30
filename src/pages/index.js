@@ -10,7 +10,7 @@ import { toLocalDateTime } from '@/utils/unitConverters'
 
 export default function HomePage() {
   const [unit, setUnit] = useState("metric");
-  const [summaryData, setSummaryData] = useState({});
+  const [summaryData, setSummaryData] = useState(null);
   const [city, setCity] = useState("vancouver");
   const [geoCode, setGeoCode] = useState({ lon: 0, lat: 0 });
   const [weeklyData, setWeeklyData] = useState({});
@@ -19,8 +19,7 @@ export default function HomePage() {
   
   const fetchSummaryData = async () => {
     setLoading(true);
-    await fetch("/api/weather", 
-      {
+    await fetch("/api/weather", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ city: city, unit: unit })
@@ -68,8 +67,8 @@ export default function HomePage() {
   }
 
   useEffect(() => {
-    fetchSummaryData();
     fetchWeeklyData();
+    fetchSummaryData();
   }, [city, unit])
 
 
@@ -85,9 +84,9 @@ export default function HomePage() {
 
   return(
     <>
-      {summaryData && <div className="p-2 md:flex h-screen justify-center items-center">
+      <div className="p-2 md:flex h-screen justify-center items-center">
         <div className="grid grid-cols-1 md:grid-cols-4 shadow-lg rounded-xl bg-stone-50">
-          <div className="col-span-1 md:flex justify-center items-center">
+          {summaryData && <div className="col-span-1 md:flex justify-center items-center">
             <SummaryCard 
               city={summaryData.name} 
               country={summaryData.sys.country} 
@@ -95,12 +94,13 @@ export default function HomePage() {
               weather={summaryData.weather[0]}
               main={summaryData.main}
             />
-          </div>
+          </div>}
+          
           <div className="col-span-1 md:col-span-3 p-6 pt-4 bg-orange-100 rounded-tr-lg rounded-br-lg">
             <div className="md:flex md:justify-between border-b-2 pb-2">
               <div className="flex mt-8">
                 <CalendarIcon className="text-gray-800 w-10 h-10 mr-3" />
-                <h2 className="text-4xl font-semibold text-gray-800">{toLocalDateTime(summaryData.dt, true)}</h2>
+                <h2 className="text-4xl font-semibold text-gray-800">{toLocalDateTime(summaryData?.dt, true) || ""}</h2>
               </div>
               <SearchBar setCity={setCity} />
             </div>
@@ -125,7 +125,6 @@ export default function HomePage() {
           </div>
         </div>
         </div>
-      }
     </>
   )  
 }
