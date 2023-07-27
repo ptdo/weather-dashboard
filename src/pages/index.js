@@ -7,7 +7,6 @@ import HighlightsLayout from '@/components/HighlightsLayout'
 import WeeklyLayout from '@/components/WeeklyLayout'
 import { toLocalDateTime } from '@/utils/unitConverters'
 
-
 export default function HomePage() {
   const [unit, setUnit] = useState("metric");
   const [summaryData, setSummaryData] = useState(null);
@@ -83,7 +82,7 @@ export default function HomePage() {
   )};
 
   return(
-    <>
+    <> 
       <div className="p-2 md:flex h-screen justify-center items-center">
         <div className="grid grid-cols-1 md:grid-cols-4 shadow-lg rounded-xl bg-stone-50">
           {summaryData && <div className="col-span-1 md:flex justify-center items-center">
